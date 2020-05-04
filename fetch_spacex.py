@@ -10,8 +10,7 @@ def fetch_spacex_last_launch():
     images_response = launches_response.json()
     images_response_1 = images_response['links']['flickr_images']
     images_path = "/path/"
-    if not os.path.exists(images_path):
-        os.mkdir(images_path)
+    os.makedirs(images_path, mode = 0o777, exist_ok = False)
     for i, value in enumerate(images_response_1):
         response = requests.get(value)
         response.raise_for_status()
