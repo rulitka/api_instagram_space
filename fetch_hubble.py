@@ -21,7 +21,7 @@ def return_of_images(image_id):
     launches_response.raise_for_status()
     hubble_image = launches_response.json()['image_files'][-1]['file_url']
     full_file_url = f'https:{hubble_image}'
-    file_extension = full_file_url.split('.')[-1]
+    file_extension = os.path.splitext(full_file_url)
     image_name = (f'hubble_{image_id}.' + file_extension)
     save_dir = Path('C:/images/')
     save_dir.mkdir(parents=True, exist_ok=True)
