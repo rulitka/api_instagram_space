@@ -5,8 +5,8 @@ from PIL import Image
 
 
 def return_of_collection(collection_name):
-    curl = f'http://hubblesite.org/api/v3/images/{collection_name}'
-    launches_response = requests.get(curl)
+    url = f'http://hubblesite.org/api/v3/images/{collection_name}'
+    launches_response = requests.get(url)
     launches_response.raise_for_status()
     images_response = launches_response.json()
     image_id = []
@@ -16,8 +16,8 @@ def return_of_collection(collection_name):
 
 
 def return_of_images(image_id):
-    URL = f'http://hubblesite.org/api/v3/image/{image_id}'
-    launches_response = requests.get(URL)
+    url = f'http://hubblesite.org/api/v3/image/{image_id}'
+    launches_response = requests.get(url)
     launches_response.raise_for_status()
     hubble_image = launches_response.json()['image_files'][-1]['file_url']
     full_file_url = f'https:{hubble_image}'
