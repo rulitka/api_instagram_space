@@ -22,7 +22,7 @@ def fetch_spacex_last_launch():
 
 
 def resize_aspect_fit():
-    path = 'C:/path/'
+    path = '/path/'
     dirs = os.listdir(path)
     final_size = 1080;
     for item in dirs:
