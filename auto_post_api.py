@@ -4,10 +4,10 @@ import os
 import sys
 import time
 from io import open
-
-sys.path.append(os.path.join(sys.path[0], "../../"))
 from instabot import Bot  # noqa: E402
 from dotenv import load_dotenv
+
+sys.path.append(os.path.join(sys.path[0], "../../"))
 load_dotenv()
 username = os.getenv('INSTA_LOGIN')
 password = os.getenv('INSTA_PASSWORD')
