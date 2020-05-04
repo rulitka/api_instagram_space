@@ -37,9 +37,9 @@ def return_of_images(image_id):
 
 def resize_aspect_fit():
     path = '/images/'
-    dirs = os.listdir(path)
+    dir = os.listdir(path)
     final_size = 1080;
-    for photo in dirs:
+    for photo in dir:
         im = Image.open(path+photo)
         f, e = os.path.splitext(path+photo)
         size = im.size
