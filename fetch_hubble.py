@@ -23,7 +23,7 @@ def return_of_images(image_id):
     full_file_url = f'https:{hubble_image}'
     file_extension = os.path.splitext(full_file_url)
     image_name = (f'hubble_{image_id}.' + file_extension)
-    save_dir = Path('C:/images/')
+    save_dir = Path('/images/')
     save_dir.mkdir(parents=True, exist_ok=True)
     file_path = save_dir / image_name
     response = requests.get(full_file_url, verify=False)
@@ -36,7 +36,7 @@ def return_of_images(image_id):
 
 
 def resize_aspect_fit():
-    path = 'C:/images/'
+    path = '/images/'
     dirs = os.listdir(path)
     final_size = 1080;
     for photo in dirs:
