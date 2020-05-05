@@ -1,4 +1,5 @@
 # Приложения для загрузки в Instagram фотографий космоса
+[![Build Status]http://imgsrc.hubblesite.org/hvi/uploads/image_file/image_attachment/29433/2560x1024_wallpaper.jpg]
 
 Размещение в инстаграме фотографий запуской spacex и hubble. Для разсещения используются данные api-приложений:API SpaceX и API Hubble.
 В проекте находятся три файла, каждый из которых выполняет свою функцию. 
