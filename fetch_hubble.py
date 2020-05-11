@@ -2,7 +2,7 @@ import requests
 from pathlib import Path
 import os
 from PIL import Image
-import resize1
+import resize
 
 
 def get_collection(collection_name):
@@ -31,7 +31,7 @@ def get_image(image_id):
     response.raise_for_status()
     with open(file_path, 'wb') as file:
         file.write(response.content)
-    new_image = resize1.resize_aspect_fit()
+    new_image = resize.resize_aspect_fit()
     new_image.save(f'{save_dir}/hubble_{image_id}_crop.jpg', 'JPEG')
     file_path.unlink()
 
@@ -41,7 +41,6 @@ def main():
     image_id = get_collection(collection_name)
     for image in image_id:
         get_image(image)
-
 
 
 if __name__ == '__main__':
