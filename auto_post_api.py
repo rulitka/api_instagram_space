@@ -15,7 +15,7 @@ def post_file():
     try:
         with open("./images/upload_images.txt", "r", encoding="utf8") as f:
             posted_pic_list = f.read().splitlines()
-    except Exception:
+    except (FileNotFoundError, IOError):
         posted_pic_list = []
 
     timeout = 24 * 60 * 60  # pics will be posted every 24 hours
