@@ -7,20 +7,24 @@ import resize
 
 def get_collection(collection_name):
     url = f'http://hubblesite.org/api/v3/images/{collection_name}'
-    launche_response = requests.get(url)
-    launche_response.raise_for_status()
-    images_response = launche_response.json()
+    launches_response = requests.get(url)
+    launches_response.raise_for_status()
+    images_response = launches_response.json()
     image_id = []
-    for number in images_response:
-        image_id.append(number["id"])
+    for i in images_response:
+        image_id.append(i["id"])
     return image_id
 
 
 def get_image(image_id):
     url = f'http://hubblesite.org/api/v3/image/{image_id}'
-    launche_response = requests.get(url)
-    launche_response.raise_for_status()
-    hubble_image = launche_response.json()['image_files'][-1]['file_url']
+    launches_response = requests.get(url)
+    launches_response.raise_for_status()
+    hubble_image = launches_response.json()['image_files'][-1]['file_url']
+    return hubble_image
+
+
+def save_images(hubble_image, image_id):
     full_file_url = f'https:{hubble_image}'
     file_extension = os.path.splitext(full_file_url)[-1]
     image_name = (f'hubble_{image_id}{file_extension}')
@@ -40,8 +44,9 @@ def main():
     collection_name = input ("Введите название коллекции:")
     image_id = get_collection(collection_name)
     for image in image_id:
-        get_image(image)
-
+        hubble_image = get_image(image)
+        save_images(hubble_image, image)
+    
 
 if __name__ == '__main__':
     main()
