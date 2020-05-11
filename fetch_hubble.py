@@ -7,20 +7,20 @@ import resize
 
 def get_collection(collection_name):
     url = f'http://hubblesite.org/api/v3/images/{collection_name}'
-    launches_response = requests.get(url)
-    launches_response.raise_for_status()
-    images_response = launches_response.json()
+    launche_response = requests.get(url)
+    launche_response.raise_for_status()
+    images_response = launche_response.json()
     image_id = []
-    for i in images_response:
-        image_id.append(i["id"])
+    for number in images_response:
+        image_id.append(number["id"])
     return image_id
 
 
 def get_image(image_id):
     url = f'http://hubblesite.org/api/v3/image/{image_id}'
-    launches_response = requests.get(url)
-    launches_response.raise_for_status()
-    hubble_image = launches_response.json()['image_files'][-1]['file_url']
+    launche_response = requests.get(url)
+    launche_response.raise_for_status()
+    hubble_image = launche_response.json()['image_files'][-1]['file_url']
     full_file_url = f'https:{hubble_image}'
     file_extension = os.path.splitext(full_file_url)[-1]
     image_name = (f'hubble_{image_id}{file_extension}')
