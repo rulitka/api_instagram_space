@@ -7,7 +7,6 @@ from instabot import Bot  # noqa: E402
 from dotenv import load_dotenv
 
 def post_file(username, password):
-    sys.path.append(os.path.join(sys.path[0], "../../"))
     load_dotenv()
     posted_pic_list = []
     try:
@@ -18,7 +17,6 @@ def post_file(username, password):
     bot = Bot()
     bot.login(username = username,  
               password = password)
-
     folder_path = "./images/"
     pics = glob.glob(folder_path + "/*_crop.jpg")
     pics = sorted(pics) 
