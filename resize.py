@@ -5,9 +5,9 @@ from PIL import Image
 
 def resize_aspect_fit():
     path = './images/'
-    dir = os.listdir(path)
+    folder = os.listdir(path)
     final_size = 1080;
-    for file_name in dir:
+    for file_name in folder:
         if os.path.isfile(path+file_name):
             image = Image.open(path+file_name)
             file, file_extension = os.path.splitext(path+file_name)
