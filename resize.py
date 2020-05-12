@@ -8,8 +8,9 @@ def resize_aspect_fit():
     folder = os.listdir(path)
     final_size = 1080;
     for file_name in folder:
-        if os.path.isfile(path+file_name):
-            image = Image.open(path+file_name)
+        file_path = os.path.join(path, file_name)
+        if os.path.isfile(file_path):
+            image = Image.open(file_path)
             file, file_extension = os.path.splitext(path+file_name)
             size = image.size
             ratio = float(final_size) / max(size)
