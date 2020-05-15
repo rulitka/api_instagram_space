@@ -2,7 +2,8 @@ import requests
 from pathlib import Path
 import os
 from PIL import Image
-import resize1
+import resizez
+
 
 def fetch_spacex_last_launch():
     url = 'https://api.spacexdata.com/v3/launches/latest'
@@ -14,23 +15,24 @@ def fetch_spacex_last_launch():
     
 
 def save_images(images_link_list):
+    save_dir = Path('./images/')
+    save_dir.mkdir(parents=True, exist_ok=True)
     for i, value in enumerate(images_link_list):
-        save_dir = Path('./images/')
-        save_dir.mkdir(parents=True, exist_ok=True)
         image_url = Path(value)
-        file_path = save_dir / f'spacex_{image_url.parts[-2]}_{image_url.name}'
+        file_name = f'spacex_{image_url.parts[-2]}_{image_url.name}'
+        file_path = os.path.join(save_dir, file_name)
+        print (file_path)
         response = requests.get(value)
         response.raise_for_status()
         with open(f'{file_path}', 'wb') as file: 
             file.write(response.content)
-        crop_image = resize1.resize_aspect_fit()
-        crop_image.save(f'{save_dir}/{file_path.stem}_crop.jpg', 'JPEG')
-        file_path.unlink()
-
+        crop_image = resizez.resize_aspect_fit()
+        os.remove(file_path)
 
 def main():
     images_link_list = fetch_spacex_last_launch()
     save_images(images_link_list)
+
 
 if __name__ == '__main__':
     main()
