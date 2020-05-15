@@ -12,20 +12,23 @@ def post_file(username, password):
     try:
         with open("./images/upload_images.txt", "r", encoding="utf8") as f:
             posted_pic_list = f.read().splitlines()
-    except (FileNotFoundError, IOError):
+    except Exception:
         posted_pic_list = []
+
     bot = Bot()
     bot.login(username = username,  
               password = password)
+
     folder_path = "./images/"
     pics = glob.glob(folder_path + "/*_crop.jpg")
     pics = sorted(pics) 
     for pic in pics:
         try:
+            for pic in pics:
                 if pic in posted_pic_list:
                     continue
 
-                bot.upload_photo(pic, caption=caption)
+                bot.upload_photo(pic)
                 if bot.api.last_response.ok:
                     pass
                 else:
@@ -35,8 +38,6 @@ def post_file(username, password):
                     posted_pic_list.append(pic)
                     with open("./images/upload_images.txt", "a", encoding="utf8") as f:
                         f.write(pic + "\n")
-
-                time.sleep(timeout)
 
         except (FileNotFoundError, IOError):
             print("Wrong file or file path")
