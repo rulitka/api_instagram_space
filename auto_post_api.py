@@ -7,7 +7,6 @@ from instabot import Bot  # noqa: E402
 from dotenv import load_dotenv
 
 def post_file(username, password):
-    load_dotenv()
     posted_pic_list = []
     try:
         with open("./images/upload_images.txt", "r", encoding="utf8") as f:
@@ -24,20 +23,19 @@ def post_file(username, password):
     pics = sorted(pics) 
     for pic in pics:
         try:
-            for pic in pics:
-                if pic in posted_pic_list:
-                    continue
+            if pic in posted_pic_list:
+                continue
 
-                bot.upload_photo(pic)
-                if bot.api.last_response.ok:
-                    pass
-                else:
-                    break
+            bot.upload_photo(pic)
+            if bot.api.last_response.ok:
+                pass
+            else:
+                break
 
-                if pic not in posted_pic_list:
-                    posted_pic_list.append(pic)
-                    with open("./images/upload_images.txt", "a", encoding="utf8") as f:
-                        f.write(pic + "\n")
+            if pic not in posted_pic_list:
+                posted_pic_list.append(pic)
+                with open("./images/upload_images.txt", "a", encoding="utf8") as f:
+                    f.write(pic + "\n")
 
         except (FileNotFoundError, IOError):
             print("Wrong file or file path")
@@ -45,6 +43,7 @@ def post_file(username, password):
 
 
 def main():
+    load_dotenv()
     username = os.getenv('INSTA_LOGIN')
     password = os.getenv('INSTA_PASSWORD')
     post_file(username, password)
