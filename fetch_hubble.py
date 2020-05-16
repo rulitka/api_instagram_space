@@ -2,7 +2,7 @@ import requests
 from pathlib import Path
 import os
 from PIL import Image
-import resizez
+import resize
 
 
 def get_collection(collection_name):
@@ -31,7 +31,8 @@ def get_image(image_id):
     response.raise_for_status()
     with open(file_path, 'wb') as file:
         file.write(response.content)
-    crop_image = resizez.resize_aspect_fit()
+    crop_image = resize.resize_aspect_fit(file_path)
+    crop_image.save(f'{file_path}_crop.jpg', 'JPEG')
     os.remove(file_path)
 
 
