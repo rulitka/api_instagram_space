@@ -2,7 +2,7 @@ import requests
 from pathlib import Path
 import os
 from PIL import Image
-import resizex
+import resize
 
 
 def fetch_spacex_last_launch():
@@ -25,7 +25,7 @@ def save_images(images_link_list):
         response.raise_for_status()
         with open(file_path, 'wb') as file: 
             file.write(response.content)
-        crop_image = resizex.resize_aspect_fit(file_path)
+        crop_image = resize.resize_aspect_fit(file_path)
         crop_image.save(f'{file_path}_crop.jpg', 'JPEG')
         os.remove(file_path)
 
