@@ -29,6 +29,7 @@ def save_images(images_link_list):
         crop_image.save(f'{file_path}_crop.jpg', 'JPEG')
         os.remove(file_path)
 
+        
 def main():
     images_link_list = fetch_spacex_last_launch()
     save_images(images_link_list)
