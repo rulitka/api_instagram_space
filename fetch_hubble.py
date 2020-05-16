@@ -11,8 +11,8 @@ def get_collection(collection_name):
     launches_response.raise_for_status()
     images_response = launches_response.json()
     image_id = []
-    for i in images_response:
-        image_id.append(i["id"])
+    for number in images_response:
+        image_id.append(number["id"])
     return image_id
 
 
@@ -41,7 +41,6 @@ def main():
     image_id = get_collection(collection_name)
     for image in image_id:
         get_image(image)
-
 
 
 if __name__ == '__main__':
